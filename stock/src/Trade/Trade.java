@@ -5,16 +5,21 @@ import java.sql.Date;
 public class Trade {
 	private int tradeId;
 	private int stockId;
-	private int sellt;
+	private int sell;
+	@Override
+	public String toString() {
+		return "Trade [tradeId=" + tradeId + ", stockId=" + stockId + ", sell=" + sell + ", buy=" + buy + ", price="
+				+ price + ", tradeDate=" + tradeDate + "]";
+	}
 	private int buy;
 	private int traderNum;
 	private int price;
 	private Date tradeDate;
-	public Trade(int tradeId, int stockId, int sellt, int buy, int traderNum, int price, Date tradeDate) {
+	public Trade(int tradeId, int stockId, int sell, int buy, int traderNum, int price, Date tradeDate) {
 		super();
 		this.tradeId = tradeId;
 		this.stockId = stockId;
-		this.sellt = sellt;
+		this.sell = sell;
 		this.buy = buy;
 		this.traderNum = traderNum;
 		this.price = price;
@@ -32,11 +37,11 @@ public class Trade {
 	public void setStockId(int stockId) {
 		this.stockId = stockId;
 	}
-	public int getSellt() {
-		return sellt;
+	public int getSell() {
+		return sell;
 	}
-	public void setSellt(int sellt) {
-		this.sellt = sellt;
+	public void setSell(int sell) {
+		this.sell = sell;
 	}
 	public int getBuy() {
 		return buy;

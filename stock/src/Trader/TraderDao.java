@@ -18,7 +18,7 @@ public class TraderDao {
 	public void insert(Trader t) {
 		Connection conn = db.conn();
 		
-		String sql = "INSERT INTO trader VALUES(seq_trader.nextval, ?, ?, ?, ? ,? ,?, ? ,? ,?";
+		String sql = "INSERT INTO trader VALUES(seq_trader.nextval, ?, ?, ?, ? ,? ,?, ? ,? ,?)";
 		
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);

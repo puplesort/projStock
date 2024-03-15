@@ -3,15 +3,15 @@ package stock;
 import java.sql.*;
 import java.util.ArrayList;
 
-import DBConnect.DBConnection;
+import DBConnect.DBConnect;
 
 
 
 
 public class StockDao {
-	private DBConnection db;
+	private DBConnect db;
 	public StockDao() {
-		db = DBConnection.getInstance();
+		db = DBConnect.getInstance();
 	}
 	public void insert(Stock s) {
 		Connection conn = db.conn();

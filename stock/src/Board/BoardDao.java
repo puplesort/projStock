@@ -23,7 +23,7 @@ public class BoardDao {
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 
-			pstmt.setInt(1, b.getWriter());
+			pstmt.setString(1, b.getWriter());
 			pstmt.setString(2, b.getTitle());
 			pstmt.setString(3, b.getContent());
 
@@ -43,19 +43,19 @@ public class BoardDao {
 		}
 	}
 
-	public Board select(int num) {
+	public Board select(String writer) {
 		Connection conn = db.conn();
 
-		String sql = "SELECT * FROM board WHERE num = ?";
+		String sql = "SELECT * FROM board WHERE writer = ?";
 
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, num);
+			pstmt.setString(1, writer);
 
 			ResultSet rs = pstmt.executeQuery();
 
 			if (rs.next()) {
-				return new Board(rs.getInt(1), rs.getInt(2), rs.getDate(3), rs.getString(4), rs.getString(5));
+				return new Board(rs.getInt(1), rs.getString(2), rs.getDate(3), rs.getString(4), rs.getString(5));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -84,7 +84,7 @@ public class BoardDao {
 			ResultSet rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				list.add(new Board(rs.getInt(1), rs.getInt(2), rs.getDate(3), rs.getString(4), rs.getString(5)));
+				list.add(new Board(rs.getInt(1), rs.getString(2), rs.getDate(3), rs.getString(4), rs.getString(5)));
 			}
 
 		} catch (SQLException e) {
@@ -100,6 +100,37 @@ public class BoardDao {
 		}
 		return list;
 	}
+	
+//	public ArrayList<Board> selectByCompanyName(String company_name) {
+//		Connection conn = db.conn();
+//		
+//		String sql = "SELECT * FROM board WHERE company_name LIKE ? ORDER BY num";
+//		ArrayList<Board> list = new ArrayList<Board>();
+//		
+//		try {
+//			PreparedStatement pstmt = conn.prepareStatement(sql);
+//			pstmt.setString(1, "%" + company_name + "%");
+//			
+//			ResultSet rs = pstmt.executeQuery();
+//			
+//			
+//			while(rs.next()) {
+//				list.add(new Board(rs.getInt(1), rs.getString(2),rs.getString(3), rs.getDate(4), rs.getString(5), rs.getString(6)));
+//				
+//			}
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} finally {
+//			try {
+//				conn.close();
+//			} catch (SQLException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//		}
+//		return list;
+//	}
 
 	public ArrayList<Board> selectAll() {
 		Connection conn = db.conn();
@@ -114,7 +145,7 @@ public class BoardDao {
 			ResultSet rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				list.add(new Board(rs.getInt(1), rs.getInt(2), rs.getDate(3), rs.getString(4), rs.getString(5)));
+				list.add(new Board(rs.getInt(1), rs.getString(2), rs.getDate(3), rs.getString(4), rs.getString(5)));
 			}
 
 		} catch (SQLException e) {
@@ -134,7 +165,7 @@ public class BoardDao {
 	public int update(Board b) {
 		Connection conn = db.conn();
 
-		String sql = "UPDATE board SET title = ?, content = ? WHERE num = ?";
+		String sql = "UPDATE board SET title = ?, content = ? WHERE writer = ?";
 		int cnt = 0;
 
 		try {
@@ -142,7 +173,7 @@ public class BoardDao {
 
 			pstmt.setString(1, b.getTitle());
 			pstmt.setString(2, b.getContent());
-			pstmt.setInt(3, b.getNum());
+			pstmt.setString(3, b.getWriter());
 
 			cnt = pstmt.executeUpdate();
 			System.out.println(cnt + " 개의 게시글 수정 완료");
@@ -160,16 +191,16 @@ public class BoardDao {
 		return cnt;
 	}
 
-	public int delete(int num) {
+	public int delete(String writer) {
 		Connection conn = db.conn();
 
-		String sql = "DELETE FROM board WHERE num = ?";
+		String sql = "DELETE FROM board WHERE writer = ?";
 		int cnt = 0;
 
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 
-			pstmt.setInt(1, num);
+			pstmt.setString(1, writer);
 			cnt = pstmt.executeUpdate();
 
 			System.out.println(cnt + " 개의 게시글 삭제 완료");

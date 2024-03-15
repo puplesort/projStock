@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import Trader.TraderService;
-
+//Service
 public class BoardService {
 	private BoardDao dao;
 	

@@ -1,7 +1,7 @@
 package Board;
 
 import java.sql.Date;
-
+//vo
 public class Board {
 	private int num;
 	private String writer;

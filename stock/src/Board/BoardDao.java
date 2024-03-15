@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import DBConnect.DBConnect;
-
+//Dao
 public class BoardDao {
 	private DBConnect db;
 

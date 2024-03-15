@@ -5,18 +5,19 @@ import java.sql.Date;
 public class Board {
 	private int num;
 	private String writer;
-	// private String company_name;
 	private Date wdate;
 	private String title;
 	private String content;
-	
-	public Board(int num, String writer, Date wdate, String title, String content) {
+	private String company_name;
+
+	public Board(int num, String writer, Date wdate, String title, String content, String company_name) {
 		super();
 		this.num = num;
 		this.writer = writer;
 		this.wdate = wdate;
 		this.title = title;
 		this.content = content;
+		this.company_name = company_name;
 	}
 
 	public int getNum() {
@@ -59,12 +60,18 @@ public class Board {
 		this.content = content;
 	}
 
+	public String getCompany_name() {
+		return company_name;
+	}
+
+	public void setCompany_name(String company_name) {
+		this.company_name = company_name;
+	}
+
 	@Override
 	public String toString() {
 		return "Board [num=" + num + ", writer=" + writer + ", wdate=" + wdate + ", title=" + title + ", content="
-				+ content + "]";
+				+ content + ", company_name=" + company_name + "]";
 	}
 
-	
-	
 }

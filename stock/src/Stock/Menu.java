@@ -73,7 +73,8 @@ public class Menu {
 		
 		boolean flag = true;
 		while(flag) {
-			System.out.println("1.내정보 확인(보유 주식/자산) 2.내정보 수정 3.매도 4.매수 5.로그아웃 6.탈퇴 7.게시판");
+			//System.out.println("1.내정보 확인(보유 주식/자산) 2.내정보 수정 3.매도 4.매수 5.로그아웃 6.탈퇴 7.게시판");
+			System.out.println("1.내정보 확인(보유 주식/자산) 2.내정보 수정 3.매도 4.매수 5.게시판 6.로그아웃 7.탈퇴");
 			// 내정보 확인 메뉴 -> 보유 주식 목록, 보유 자산, 내계좌 조회
 			System.out.print(": ");
 			int m = sc.nextInt();
@@ -92,13 +93,13 @@ public class Menu {
 				
 				break;
 			case 5:
+				runBoard(sc);
+				break;
+			case 6:
 				tservice.logout();
 				return;
-			case 6:
-				tservice.delTrader();
-				break;
 			case 7:
-				runBoard(sc);
+				tservice.delTrader();
 				break;			
 			}
 		}
@@ -138,7 +139,7 @@ public class Menu {
 		boolean flag = true;
 		
 		while(flag) {
-			System.out.println("1.게시물 작성 2.ID로 검색 3.제목으로 검색 4.전체목록 5.게시판 종료");
+			System.out.println("1.게시물 작성 2.ID로 검색 3.제목으로 검색 4. 회사명으로 검색 5.전체목록 6.게시판 종료");
 			System.out.print(": ");
 			int m = sc.nextInt();
 			
@@ -151,11 +152,13 @@ public class Menu {
 				break;
 			case 3:
 				bservice.getByTitle(sc);
-				break;
 			case 4:
-				bservice.getAll();
+				bservice.getByCompanyName(sc);
 				break;
 			case 5:
+				bservice.getAll();
+				break;
+			case 6:
 				flag = false;
 				break;
 			}

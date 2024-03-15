@@ -1,6 +1,5 @@
 package Board;
 
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -8,7 +7,6 @@ import Trader.TraderService;
 
 public class BoardService {
 	private BoardDao dao;
-	private Date sysdate;
 	
 	public BoardService() {
 		dao = new BoardDao();
@@ -20,11 +18,13 @@ public class BoardService {
 		
 		System.out.print("게시글 제목 : ");
 		sc.nextLine();
-		String title = sc.next();
+		String title = sc.nextLine();
 		System.out.print("게시글 내용");
-		String content = sc.next();
+		String content = sc.nextLine();
+		System.out.println("회사 이름 : ");
+		String company_name = sc.nextLine();
 		
-		dao.insert(new Board(0, TraderService.loginId, null, title, content));
+		dao.insert(new Board(0, TraderService.loginId, null, title, content, company_name));
 	}
 	
 	// ID로 검색
@@ -74,25 +74,25 @@ public class BoardService {
 		}
 	}
 	
-//	// 게시글 회사이름으로 검색
-//	public void getByCompanyName(Scanner sc) {
-//		System.out.println("=== 게시글 회사 이름으로 검색 ===");
-//		
-//		System.out.println("검색할 회사 이름 : ");
-//		sc.nextLine();
-//		String company_name = sc.nextLine();
-//		ArrayList<Board> list = dao.selectByCompanyName(company_name);
-//		
-//		System.out.println("--- 검색 결과 ---");
-//		
-//		if(list.isEmpty()) {
-//			System.out.println(company_name + " 의 관한 게시글이 없습니다.");
-//		} else {
-//			for(Board b : list) {
-//				System.out.println(b);
-//			}
-//		}
-//	}
+	// 게시글 회사이름으로 검색
+	public void getByCompanyName(Scanner sc) {
+		System.out.println("=== 게시글 회사 이름으로 검색 ===");
+		
+		System.out.println("검색할 회사 이름 : ");
+		sc.nextLine();
+		String company_name = sc.nextLine();
+		ArrayList<Board> list = dao.selectByCompanyName(company_name);
+		
+		System.out.println("--- 검색 결과 ---");
+		
+		if(list.isEmpty()) {
+			System.out.println(company_name + " 의 관한 게시글이 없습니다.");
+		} else {
+			for(Board b : list) {
+				System.out.println(b);
+			}
+		}
+	}
 	
 	// 게시글 전체 목록
 	public void getAll() {
@@ -118,8 +118,10 @@ public class BoardService {
 		String title = sc.nextLine();
 		System.out.print("새 내용 : ");
 		String content = sc.nextLine();
+		System.out.print("새 회사이름 : ");
+		String company_name = sc.nextLine();
 		
-		dao.update(new Board(0, writer, null, title, content));
+		dao.update(new Board(0, writer, null, title, content, company_name));
 	}
 	
 	// 삭제 -> 번호로 검색

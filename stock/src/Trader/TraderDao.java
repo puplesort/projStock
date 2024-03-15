@@ -52,14 +52,14 @@ public class TraderDao {
 	public int update(Trader t) {
 		Connection conn = db.conn();
 		
-		String sql = "UPDATE trader SET pwd = ? WHERE trader_num = ?";
+		String sql = "UPDATE trader SET pwd = ? WHERE trader_id";
 		int cnt = 0;
 		
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setString(1, t.getPwd());
-			pstmt.setInt(2, t.getTrader_num());
+			pstmt.setString(2, t.getTrader_id());
 			
 			cnt = pstmt.executeUpdate();
 			
@@ -78,16 +78,16 @@ public class TraderDao {
 		return cnt;
 	}
 	
-	public int delete(int trader_num) {
+	public int delete(String trader_id) {
 		Connection conn = db.conn();
 		
-		String sql = "DELETE FROM trader WHERE trader_num = ?";
+		String sql = "DELETE FROM trader WHERE trader_id = ?";
 		int cnt = 0;
 		
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setInt(1, trader_num);
+			pstmt.setString(1, trader_id);
 			cnt = pstmt.executeUpdate();
 			
 			System.out.println(cnt + "명 삭제 완료");
@@ -105,15 +105,15 @@ public class TraderDao {
 		return cnt;
 	}
 	
-	public Trader select(int trader_num) {
+	public Trader select(String trader_id) {
 		Connection conn = db.conn();
 		
-		String sql = "SELECT * FROM board WHERE trader_num = ?";
+		String sql = "SELECT * FROM trader WHERE trader_id = ?";
 		
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setInt(1, trader_num);
+			pstmt.setString(1, trader_id);
 			ResultSet rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
@@ -137,7 +137,7 @@ public class TraderDao {
 	public ArrayList<Trader> selectAll() {
 		Connection conn = db.conn();
 		
-		String sql = "SELECT * FROM trader";
+		String sql = "SELECT * FROM trader WHERE authority = 0";
 		
 		ArrayList<Trader> list = new ArrayList<Trader>();
 		

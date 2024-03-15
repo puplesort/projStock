@@ -1,19 +1,49 @@
 package Trader;
 
 public class Trader {
-	private int trader_num;
-	private String trader_id;
+	private int trader_num; 
+	private String trader_id; // pk
 	private String pwd;
-	private int cash;
-	private int total;
-	private String account_number;
-	private String bank_name;
-	private String list;
-	private int profit;
-	private int authority;
+	private int cash; // 충전 금액
+	private int total; // 총합
+	private String account_number; // 계좌번호
+	private String bank_name; 
+	private String list; // 보유 주식 목록
+	private int profit; // 수익률 
+	private int authority; // 관리자/회원 구분
 	
 	public Trader() {
 		
+	}
+	
+	// 회원가입용
+	public Trader(String trader_id, String pwd, String account_number, String bank_name, int authority) {
+		super();
+		this.trader_num = 0;
+		this.trader_id = trader_id;
+		this.pwd = pwd;
+		this.cash = 0;
+		this.total = 0;
+		this.account_number = account_number;
+		this.bank_name = bank_name;
+		this.list = "";
+		this.profit = 0;
+		this.authority = authority;
+	}
+
+	// 비밀번호 변경
+	public Trader(int trader_num, String trader_id, String pwd) {
+		super();
+		this.trader_num = trader_num;
+		this.trader_id = trader_id;
+		this.pwd = pwd;
+		this.cash = 0;
+		this.total = 0;
+		this.account_number = "";
+		this.bank_name = "";
+		this.list = "";
+		this.profit = 0;
+		this.authority = 0;
 	}
 
 	public Trader(int trader_num, String trader_id, String pwd, int cash, int total, String account_number,

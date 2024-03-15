@@ -4,15 +4,13 @@ import java.sql.Date;
 
 public class Board {
 	private int num;
-	private int writer;
+	private String writer;
+	// private String company_name;
 	private Date wdate;
 	private String title;
 	private String content;
 	
-	public Board() {
-	}
-
-	public Board(int num, int writer, Date wdate, String title, String content) {
+	public Board(int num, String writer, Date wdate, String title, String content) {
 		super();
 		this.num = num;
 		this.writer = writer;
@@ -29,11 +27,11 @@ public class Board {
 		this.num = num;
 	}
 
-	public int getWriter() {
+	public String getWriter() {
 		return writer;
 	}
 
-	public void setWriter(int writer) {
+	public void setWriter(String writer) {
 		this.writer = writer;
 	}
 
@@ -66,5 +64,7 @@ public class Board {
 		return "Board [num=" + num + ", writer=" + writer + ", wdate=" + wdate + ", title=" + title + ", content="
 				+ content + "]";
 	}
+
+	
 	
 }

@@ -1,4 +1,4 @@
-package Trader;
+package trader;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

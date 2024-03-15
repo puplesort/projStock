@@ -1,4 +1,4 @@
-package Trader;
+package trader;
 
 import java.util.ArrayList;
 import java.util.Scanner;

@@ -1,9 +1,9 @@
-package Board;
+package board;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import Trader.TraderService;
+import trader.TraderService;
 //Service
 public class BoardService {
 	private BoardDao dao;

@@ -2,8 +2,8 @@ package stock;
 
 import java.util.Scanner;
 
-import Board.BoardService;
-import Trader.TraderService;
+import board.BoardService;
+import trader.TraderService;
 
 public class Menu {
 	private TraderService tservice;

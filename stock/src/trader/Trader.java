@@ -1,4 +1,4 @@
-package Trader;
+package trader;
 
 public class Trader {
 	private int trader_num; 
